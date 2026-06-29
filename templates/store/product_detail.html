@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% load static %} {% block title %}{{ product.name }} — AnimaMagni{% endblock %} {% block content %}
+
+<div class="product-detail">
+    <a href="{% url 'store' %}" style="color: var(--silver-dim); text-decoration: none; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.4rem; margin-bottom: 2rem;">
+        ← بازگشت به فروشگاه
+    </a>
+
+    <div class="product-detail-grid">
+        <div class="reveal-left">
+            {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-detail-img"> {% else %}
+            <div class="product-img-placeholder" style="aspect-ratio:1; border-radius: 12px; border: 1px solid var(--black-border); font-size: 4rem;">🛒</div>
+            {% endif %}
+        </div>
+
+        <div class="reveal-right">
+            {% if product.is_featured %}<span class="badge-featured">ویژه</span>{% endif %} {% if product.category %}
+            <div style="color: var(--purple-neon); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem;">{{ product.category.name }}</div>{% endif %}
+
+            <h1 style="font-size: 2rem; font-weight: 900; color: var(--silver-bright); margin-bottom: 1rem;">{{ product.name }}</h1>
+            <div class="product-detail-price">{{ product.price }}</div>
+            <p class="product-detail-desc">{{ product.description }}</p>
+
+            {% if product.download_link %}
+            <a href="{{ product.download_link }}" class="btn btn-primary" target="_blank" rel="noopener" style="margin-bottom: 1rem;">
+                ⬇ دانلود / خرید
+            </a> {% else %} 📩 درخواست خرید
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if related %}
+    <div style="margin-top: 4rem;">
+        <h2 style="font-size: 1.3rem; color: var(--silver-bright); margin-bottom: 1.5rem;">محصولات مرتبط</h2>
+        <div class="products-grid" style="padding: 0;">
+            {% for p in related %}
+            <a href="{% url 'product_detail' p.pk %}" class="product-card reveal">
+                {% if p.image %}<img src="{{ p.image.url }}" alt="{{ p.name }}" class="product-img">{% else %}<div class="product-img-placeholder" style="aspect-ratio:1;">🛒</div>{% endif %}
+                <div class="product-body">
+                    <div class="product-name">{{ p.name }}</div>
+                    <div class="product-price">{{ p.formatted_price }}</div>
+                </div>
+            </a> {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

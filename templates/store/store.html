@@ -1,0 +1,52 @@
+{% extends 'base.html' %} {% load static %} {% block title %}فروشگاه — AnimaMagni{% endblock %} {% block content %}
+
+<div class="store-hero">
+    <div class="section-eyebrow" style="display:inline-block; margin-bottom: 0.75rem;">Store</div>
+    <h1 class="section-title" style="color: var(--silver-bright); margin-bottom: 0.5rem;">🪐MagiShop🪐</h1>
+    <p style="color: var(--silver-dim); font-size: 0.95rem;"></p>
+</div>
+
+<!-- Category Filter -->
+<!--<div class="filter-bar" style="padding: 0 2rem 1rem;">
+<a href="{% url 'store' %}" class="filter-btn {% if not active_category %}active{% endif %}">همه</a> {% for cat in categories %}
+<a href="?category={{ cat.slug }}" class="filter-btn {% if active_category.slug == cat.slug %}active{% endif %}">{{ cat.name }}</a> {% endfor %}
+</div>
+-->
+{% if products %}
+<div class="products-grid">
+    {% for product in products %}
+    <a href="{% url 'product_detail' product.slug %}" class="product-card reveal" style="--i: {{ forloop.counter0 }}">
+        {% if product.is_featured %}
+        <div style="position: relative;">
+            {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-img">
+            {% else %}
+            <div class="product-img-placeholder">🛒</div>
+            {% endif %}
+            <span class="badge-featured" style="position: absolute; top: 10px; right: 10px;">ویژه</span>
+        </div>
+        {% else %}
+            {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-img">
+            {% else %}
+            <div class="product-img-placeholder">🛒</div>
+            {% endif %}
+        {% endif %}
+        <div class="product-body">
+            {% if product.category %}<div style="font-size: 0.7rem; color: var(--purple-neon); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 0.4rem; text-transform: uppercase;">{{ product.category.name }}</div>{% endif %}
+            <div class="product-name">{{ product.name }}</div>
+            <div class="product-price">{{ product.price }}</div>
+            <p class="product-desc">{{ product.description|truncatechars:80 }}</p>
+        </div>
+    </a> {% endfor %}
+</div>
+{% else %}
+<div class="empty-state" style="padding: 5rem 2rem;">
+    <div class="empty-state-icon">🛒</div>
+    <h3>هنوز محصولی اضافه نشده</h3>
+    <p>به زودی محصولات جدید اضافه می‌شوند.</p>
+</div>
+{% endif %}
+
+<div style="padding: 3rem;"></div>
+{% endblock %}
