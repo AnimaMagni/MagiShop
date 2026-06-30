@@ -7,12 +7,11 @@
 </div>
 
 <!-- Category Filter -->
-<!--<div class="filter-bar" style="padding: 0 2rem 1rem;">
-<a href="{% url 'store' %}" class="filter-btn {% if not active_category %}active{% endif %}">همه</a> {% for cat in categories %}
-<a href="?category={{ cat.slug }}" class="filter-btn {% if active_category.slug == cat.slug %}active{% endif %}">{{ cat.name }}</a> {% endfor %}
+<div class="filter-bar" style="padding: 0 2rem 1rem;">
+    <a href="{% url 'store' %}" class="filter-btn {% if not active_category %}active{% endif %}">همه</a> {% for cat in categories %}
+    <a href="?category={{ cat.slug }}" class="filter-btn {% if active_category.slug == cat.slug %}active{% endif %}">{{ cat.name }}</a> {% endfor %}
 </div>
--->
-{% if products %}
+
 <div class="products-grid">
     {% for product in products %}
     <a href="{% url 'product_detail' product.slug %}" class="product-card reveal" style="--i: {{ forloop.counter0 }}">
@@ -40,13 +39,7 @@
         </div>
     </a> {% endfor %}
 </div>
-{% else %}
-<div class="empty-state" style="padding: 5rem 2rem;">
-    <div class="empty-state-icon">🛒</div>
-    <h3>هنوز محصولی اضافه نشده</h3>
-    <p>به زودی محصولات جدید اضافه می‌شوند.</p>
-</div>
-{% endif %}
+
 
 <div style="padding: 3rem;"></div>
 {% endblock %}
