@@ -3,7 +3,8 @@ from django.urls import path
 from .views import (
     store,
     product_detail,
-    home
+    home,
+    contact
     
 )
 
@@ -25,5 +26,11 @@ urlpatterns = [
         "product/<slug:slug>/",
         product_detail,
         name="product_detail"
+    ),
+
+    path(
+        "contact/",
+        contact,
+        name="contact"
     ),
 ]

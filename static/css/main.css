@@ -1,20 +1,15 @@
-/* =============================================
-   AnimaMagni — Main Stylesheet
-   Theme: Metallic Silver · Deep Black · Purple Neon
-   ============================================= */
-
 :root {
-    --black: #0a0a0a;
-    --black-soft: #111111;
-    --black-card: #141414;
-    --black-border: #1e1e1e;
-    --silver: #c8c8c8;
-    --silver-bright: #e8e8e8;
-    --silver-dim: #888888;
-    --purple: #7c5cbf;
-    --purple-neon: #9b6dff;
-    --purple-glow: rgba(124, 92, 191, 0.4);
-    --purple-dim: rgba(124, 92, 191, 0.15);
+    --black: #060610;
+    --black-soft: #0a0a1e;
+    --black-card: #0c0c22;
+    --black-border: #10103a;
+    --silver: #b0b8e8;
+    --silver-bright: #dde4ff;
+    --silver-dim: #5a6090;
+    --purple: #3344cc;
+    --purple-neon: #4466ff;
+    --purple-glow: rgba(70, 100, 255, 0.35);
+    --purple-dim: rgba(70, 100, 255, 0.1);
     --white: #ffffff;
     --font: 'Vazirmatn', sans-serif;
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1254,4 +1249,213 @@ body {
         animation-duration: 0.01ms !important;
         transition-duration: 0.01ms !important;
     }
+}
+
+
+/* ─── NAVBAR SEARCH — نسخه اصلاح شده ─── */
+
+.nav-search-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+}
+
+
+/* دکمه آیکون */
+
+.search-icon-btn {
+    background: none;
+    border: 1px solid var(--black-border);
+    border-radius: 8px;
+    color: var(--silver-dim);
+    cursor: pointer;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.search-icon-btn:hover {
+    border-color: var(--purple-neon);
+    color: var(--purple-neon);
+    box-shadow: 0 0 12px var(--purple-glow);
+}
+
+
+/* باکس جستجو — inline نه absolute */
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--black-card);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 0;
+    width: 0;
+    height: 38px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, border-color 0.25s ease, box-shadow 0.3s ease, padding 0.25s ease;
+}
+
+.search-box.open {
+    width: 260px;
+    opacity: 1;
+    pointer-events: all;
+    border-color: var(--purple-neon);
+    box-shadow: 0 0 20px var(--purple-glow);
+    padding: 0 0.8rem;
+}
+
+.search-box-icon {
+    color: var(--purple-neon);
+    flex-shrink: 0;
+    opacity: 0.8;
+}
+
+.search-input {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--silver-bright);
+    font-family: var(--font);
+    font-size: 0.88rem;
+    width: 100%;
+    direction: rtl;
+}
+
+.search-input::placeholder {
+    color: var(--silver-dim);
+}
+
+.search-clear {
+    background: none;
+    border: none;
+    color: var(--silver-dim);
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: color var(--transition);
+    display: none;
+}
+
+.search-clear:hover {
+    color: var(--purple-neon);
+}
+
+.search-clear.visible {
+    display: block;
+}
+
+
+/* پنل نتایج */
+
+.search-results {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    width: 320px;
+    background: var(--black-card);
+    border: 1px solid var(--black-border);
+    border-radius: 12px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.25s ease;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.search-results.open {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+}
+
+
+/* موبایل */
+
+@media (max-width: 768px) {
+    .search-box.open {
+        width: 180px;
+    }
+    .search-results {
+        width: 260px;
+        right: 0;
+        left: auto;
+    }
+}
+
+
+/* =============================================
+   PAGINATION
+   ============================================= */
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 2.5rem 1rem 3rem;
+    flex-wrap: wrap;
+}
+
+.page-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    background: var(--black-card);
+    border: 1px solid var(--black-border);
+    color: var(--silver);
+    font-family: var(--font);
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition);
+    cursor: pointer;
+}
+
+.page-btn:hover {
+    border-color: var(--purple-neon);
+    color: var(--purple-neon);
+    box-shadow: 0 0 16px var(--purple-glow);
+    transform: translateY(-2px);
+}
+
+.page-btn.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+
+/* شماره صفحات */
+
+.page-numbers {
+    display: flex;
+    gap: .5rem;
+}
+
+.page-btn:hover {
+    border-color: var(--purple-neon);
+    color: var(--purple-neon);
+    box-shadow: 0 0 18px var(--purple-glow);
+}
+
+.page-btn.active {
+    background: var(--purple-neon);
+    color: white;
+    border-color: var(--purple-neon);
 }

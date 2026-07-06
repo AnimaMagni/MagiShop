@@ -21,27 +21,7 @@
     </div>
 </section>
 
-<!-- ===== CATEGORIES ===== -->
-<section class="section" id="categories">
-    <div class="section-header reveal">
-        <div class="section-eyebrow">Categories</div>
-        <h2 class="section-title">دسته‌بندی‌ها</h2>
-        <div class="section-divider"></div>
-    </div>
 
-    <div class="category-grid stagger">
-        {% for cat in categories %}
-        <a href="{% url 'store' %}?category={{ cat.slug }}" class="category-card reveal" style="--i: {{ forloop.counter0 }}">
-            <div class="category-name">{{ cat.name }}</div>
-        </a>
-        {% empty %}
-        <div class="empty-state">
-            <div class="empty-state-icon">📦</div>
-            <h3>هنوز دسته‌بندی‌ای ثبت نشده</h3>
-        </div>
-        {% endfor %}
-    </div>
-</section>
 
 <!-- ===== FEATURED PRODUCTS ===== -->
 <section class="section">
@@ -78,6 +58,9 @@
         {% endfor %}
     </div>
 </section>
+
+
+
 
 <!-- ===== NEW PRODUCTS ===== -->
 <section class="section">
