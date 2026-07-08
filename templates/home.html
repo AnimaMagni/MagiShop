@@ -24,35 +24,35 @@
 
 
 <!-- ===== FEATURED PRODUCTS ===== -->
-<section class="section">
-    <div class="section-header reveal">
-        <div class="section-eyebrow">Featured</div>
-        <h2 class="section-title">محصولات ویژه</h2>
-        <div class="section-divider"></div>
+<section class="section ">
+    <div class="section-header reveal ">
+        <div class="section-eyebrow ">Featured</div>
+        <h2 class="section-title ">محصولات ویژه</h2>
+        <div class="section-divider "></div>
     </div>
 
-    <div class="products-grid stagger">
+    <div class="products-grid stagger ">
         {% for product in featured_products %}
-        <a href="{% url 'product_detail' product.slug %}" class="product-card reveal" style="--i: {{ forloop.counter0 }}">
-            <div style="position: relative;">
+        <a href="{% url 'product_detail' product.slug %} " class="product-card reveal " style="--i: {{ forloop.counter0 }} ">
+            <div style="position: relative; ">
                 {% if product.image %}
-                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-img"> {% else %}
-                <div class="product-img-placeholder">🛒</div>
+                <img src="{{ product.image.url }} " alt="{{ product.name }} " class="product-img "> {% else %}
+                <div class="product-img-placeholder ">🛒</div>
                 {% endif %}
-                <span class="badge-featured" style="position: absolute; top: 10px; right: 10px;">ویژه</span>
+                <span class="badge-featured " style="position: absolute; top: 10px; right: 10px; ">ویژه</span>
             </div>
-            <div class="product-body">
+            <div class="product-body ">
                 {% if product.category %}
-                <div style="font-size: 0.7rem; color: var(--purple-neon); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 0.4rem; text-transform: uppercase;">{{ product.category.name }}</div>
+                <div style="font-size: 0.7rem; color: var(--purple-neon); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 0.4rem; text-transform: uppercase; ">{{ product.category.name }}</div>
                 {% endif %}
-                <div class="product-name">{{ product.name }}</div>
-                <div class="product-price">{{ product.formatted_price }}</div>
-                <p class="product-desc">{{ product.description|truncatechars:80 }}</p>
+                <div class="product-name ">{{ product.name }}</div>
+                <div class="product-price ">{{ product.formatted_price }}</div>
+                <p class="product-desc ">{{ product.description|truncatechars:80 }}</p>
             </div>
         </a>
         {% empty %}
-        <div class="empty-state">
-            <div class="empty-state-icon">⭐</div>
+        <div class="empty-state ">
+            <div class="empty-state-icon ">⭐</div>
             <h3>محصول ویژه‌ای موجود نیست</h3>
         </div>
         {% endfor %}
@@ -61,41 +61,62 @@
 
 
 
-
-<!-- ===== NEW PRODUCTS ===== -->
-<section class="section">
-    <div class="section-header reveal">
-        <div class="section-eyebrow">New Arrivals</div>
-        <h2 class="section-title">محصولات جدید</h2>
-        <div class="section-divider"></div>
+<!-- ===== CATEGORIES ===== -->
+<section class="section " id="categories ">
+    <div class="section-header reveal ">
+        <div class="section-eyebrow ">Categories</div>
+        <h2 class="section-title ">دسته‌بندی‌ها</h2>
+        <div class="section-divider "></div>
     </div>
 
-    <div class="products-grid stagger">
+    <div class="category-grid stagger ">
+        {% for cat in categories %}
+        <a href="{% url 'store' %}?category={{ cat.slug }} " class="category-card reveal " style="--i: {{ forloop.counter0 }} ">
+            <div class="category-name ">{{ cat.name }}</div>
+        </a>
+        {% empty %}
+        <div class="empty-state ">
+            <div class="empty-state-icon ">📦</div>
+            <h3>هنوز دسته‌بندی‌ای ثبت نشده</h3>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- ===== NEW PRODUCTS ===== -->
+<section class="section ">
+    <div class="section-header reveal ">
+        <div class="section-eyebrow ">New Arrivals</div>
+        <h2 class="section-title ">محصولات جدید</h2>
+        <div class="section-divider "></div>
+    </div>
+
+    <div class="products-grid stagger ">
         {% for product in new_products %}
-        <a href="{% url 'product_detail' product.slug %}" class="product-card reveal" style="--i: {{ forloop.counter0 }}">
+        <a href="{% url 'product_detail' product.slug %} " class="product-card reveal " style="--i: {{ forloop.counter0 }} ">
             {% if product.image %}
-            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-img">
+            <img src="{{ product.image.url }} " alt="{{ product.name }} " class="product-img ">
             {% else %}
-            <div class="product-img-placeholder">🛒</div>
+            <div class="product-img-placeholder ">🛒</div>
             {% endif %}
-            <div class="product-body">
+            <div class="product-body ">
                 {% if product.category %}
-                <div style="font-size: 0.7rem; color: var(--purple-neon); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 0.4rem; text-transform: uppercase;">{{ product.category.name }}</div>
+                <div style="font-size: 0.7rem; color: var(--purple-neon); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 0.4rem; text-transform: uppercase; ">{{ product.category.name }}</div>
                 {% endif %}
-                <div class="product-name">{{ product.name }}</div>
-                <div class="product-price">{{ product.formatted_price }}</div>
-                <p class="product-desc">{{ product.description|truncatechars:80 }}</p>
+                <div class="product-name ">{{ product.name }}</div>
+                <div class="product-price ">{{ product.formatted_price }}</div>
+                <p class="product-desc ">{{ product.description|truncatechars:80 }}</p>
             </div>
         </a> {% empty %}
-        <div class="empty-state">
-            <div class="empty-state-icon">🆕</div>
+        <div class="empty-state ">
+            <div class="empty-state-icon ">🆕</div>
             <h3>محصول جدیدی موجود نیست</h3>
         </div>
         {% endfor %}
     </div>
 
-    <div style="text-align: center; margin-top: 2.5rem;">
-        <a href="{% url 'store' %}" class="btn btn-primary">مشاهده همه محصولات</a>
+    <div style="text-align: center; margin-top: 2.5rem; ">
+        <a href="{% url 'store' %} " class="btn btn-primary ">مشاهده همه محصولات</a>
     </div>
 </section>
 
