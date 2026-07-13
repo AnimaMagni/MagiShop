@@ -4,9 +4,10 @@ from .views import (
     store,
     product_detail,
     home,
-    contact
-    
+    contact,
 )
+from accounts.views import register, login_view
+
 
 urlpatterns = [
 
@@ -33,4 +34,16 @@ urlpatterns = [
         contact,
         name="contact"
     ),
+
+    path(
+        "register/",
+        register,
+        name="register"
+    ),
+
+    path(
+        "login/",   
+        login_view,
+        name="login"
+    )
 ]

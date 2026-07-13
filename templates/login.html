@@ -1,0 +1,69 @@
+{% extends 'base.html' %} {% load static %} {% block title %} ورود — MagiShop {% endblock %} {% block content %}
+
+<div class="contact-page">
+
+    <div class="section-header reveal" style="margin-bottom:3rem;">
+
+        <div class="section-eyebrow">
+            Login
+        </div>
+
+        <h1 class="section-title">
+            ورود به حساب کاربری
+        </h1>
+
+        <div class="section-divider"></div>
+
+        <p style="color: var(--silver-dim); margin-top:1rem;">
+            خوش برگشتی ✨
+        </p>
+
+    </div>
+
+    <div style="max-width:650px;margin:auto;" class="reveal">
+
+        <form method="POST" class="contact-form">
+
+            {% csrf_token %} {% if form.non_field_errors %}
+            <div class="form-errors">
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+
+            <div class="form-group">
+
+                <label class="form-label">
+                    نام کاربری
+                </label> {{ form.username }} {{ form.username.errors }}
+
+            </div>
+
+            <div class="form-group">
+
+                <label class="form-label">
+                    رمز عبور
+                </label> {{ form.password }} {{ form.password.errors }}
+
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+                ورود
+            </button>
+
+        </form>
+
+        <p style="margin-top:2rem;text-align:center;color:var(--silver-dim);">
+
+            حساب کاربری ندارید؟
+
+            <a href="{% url 'register' %}" style="color:var(--purple-neon);font-weight:700;">
+                ثبت نام
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

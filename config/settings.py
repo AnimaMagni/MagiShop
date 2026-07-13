@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "shop",
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -120,5 +121,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-MEDIA_URL = "media/" #مرور گر خواست عکس هارو ببینه
+MEDIA_URL = "media/" # URL to serve media files
 MEDIA_ROOT = BASE_DIR / "media" 
+
+AUTH_USER_MODEL = "accounts.User" #for custom user model
